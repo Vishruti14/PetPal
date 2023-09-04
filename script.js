@@ -5,14 +5,23 @@ $('#loginForm').submit(function (event) {
         const password = $('#password').val();
 
         const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        const petType = $('input[name="pet"]:checked').val();
+
 
         if (!emailPattern.test(email)) {
             alert('Please enter a valid email address.');
         } else if (password.length < 8) {
             alert('Password must be at least 8 characters long.');
-        } else {
-            window.location.href="login.html"
-        }
+        } 
+        else if (!petType){
+            alert('Please select a pet type')
+        }       
+        else {
+            if (petType === 'dog') {
+                window.location.href = 'dogwalking.html'; // Redirect to the dog page
+            } else if (petType === 'cat') {
+                window.location.href = 'petsitting.html'; // Redirect to the cat page
+            }        }
     });
 
 
@@ -39,11 +48,8 @@ $('#loginForm').submit(function (event) {
         } else if (!isValidEmail(email)) {
             alert('Please enter a valid email address.');
         } else {
-            if (petType === 'dog') {
-                window.location.href = 'dogwalking.html'; // Redirect to the dog page
-            } else if (petType === 'cat') {
-                window.location.href = 'petsitting.html'; // Redirect to the cat page
-            }
+            alert('Registration Successful');
+            window.location.href="index.html"
             
         }
     });
